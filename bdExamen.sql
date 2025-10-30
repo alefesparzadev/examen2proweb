@@ -106,191 +106,100 @@ VALUES
 
 
 drop table producto;
+-- ---------------------------------------------------------------------------------------
+-- Procedimiento: Control de Acceso, validacion de usuarios y estatus de env o de resultado
+-- Datos:		  Usuario, Contrasena
+-- Estatus:		  '0' - Usuario Incorrecto
+-- 			  '1' - Usuario Correcto + datos del usuario
+-- Parametros entrada:	  usuario, contrasena
 
--- -----------------------------------------------------------------------------------
--- Vista vwRptProducto
-DROP VIEW IF EXISTS vwRptProducto;
 
-CREATE VIEW vwRptProducto AS
-SELECT 
-    PRO_CVE,
-    PRO_NOMBRE,
-    PRO_DESCRIPCION,
-    PRO_PRECIO,
-    PRO_CANTIDAD,
-    PRO_ACTIVO,
-    PRO_FOTO,
-    PRO_ESTATUS,
-    PRO_FECHA_REGISTRO
-FROM producto
-WHERE PRO_ACTIVO = 1;
+delimiter $$
+create procedure sp_Acceso
+(
+in usuario  varchar(15),
+in password varchar(15)
+)
+begin
+	-- Validacion de condicion de acceso (usuario y password)
+	if exists(  select  u.usu_nombre, u.usu_apellido_paterno, u.usu_apellido_materno, 
+						u.usu_usuario, r.rol_nombre
+				from    usuario u, rol r
+				where   u.usu_usuario = usuario
+				and     u.usu_password = password
+				and     u.rol_cve_rol = r.rol_cve_rol  ) then
 
-SELECT * FROM vwRptProducto;
 
--- Procedimiento sp_MostrarProductos
-DROP PROCEDURE IF EXISTS sp_MostrarProductos;
+					select  '1' as usu_ban, usu_cve_usuario,
+                    concat(u.usu_nombre, ' ',
+                        u.usu_apellido_paterno, ' ',
+                        u.usu_apellido_materno) as usu_nombre, 
+							u.usu_usuario, r.rol_nombre
+					from    usuario u, rol r
+					where   u.usu_usuario = usuario
+					and     u.usu_password = password
+					and     u.rol_cve_rol = r.rol_cve_rol;
+	
+	else
+					select '0' as usu_ban;
+	end if;
+
+end $$
+
+-- Ejecuci n del procedimiento (pruebas de validaci n de acceso)
+call sp_Acceso('hola','12345');
+call sp_Acceso('pperez','todospasaran?');
+call sp_Acceso('pperez','itp2025');
+call sp_Acceso('ppere','todospasaran?');
+
+-- Vista para reporte de articulos
+-- -------------------------------
+CREATE VIEW `vwRptProductos`
+AS
+SELECT  
+    PRO_CVE as clave, 
+    PRO_NOMBRE as nombre,
+    PRO_DESCRIPCION as descripcion, 
+    PRO_PRECIO as precio,   
+    PRO_CANTIDAD as existencias, 
+    PRO_FOTO as foto,
+    PRO_ESTATUS as estatus,
+    PRO_FECHA_REGISTRO as fecha_registro
+FROM producto 
+WHERE PRO_ACTIVO = 1 
+AND PRO_ESTATUS = 'DISPONIBLE'
+AND PRO_CANTIDAD > 0 
+ORDER BY PRO_CVE; 
+
+SELECT * FROM ARTICULO;
+
+
+
+
+SELECT * FROM vwRptArticulos;
+
+update ARTICULO set art_estatus = 'ACTIVO';
 
 DELIMITER //
-CREATE PROCEDURE sp_MostrarProductos()
+
+CREATE PROCEDURE spRptProducto()
 BEGIN
     SELECT 
-        PRO_CVE,
-        PRO_NOMBRE,
-        PRO_DESCRIPCION,
-        PRO_PRECIO,
-        PRO_FOTO
-    FROM producto
-    WHERE PRO_ACTIVO = 1 
-    AND PRO_ESTATUS = 'DISPONIBLE'
-    AND PRO_CANTIDAD > 0
-    ORDER BY PRO_NOMBRE ASC;
+        clave,
+        nombre,
+        descripcion,
+        precio,
+        existencias,
+        foto,
+        estatus,
+        fecha_registro
+    FROM vwRptProductos
+    ORDER BY clave;
 END //
+
 DELIMITER ;
 
-CALL sp_MostrarProductos();
-
--- Procedimiento: sp_AccesoUsuario 
-
-DROP PROCEDURE IF EXISTS sp_AccesoUsuario;
-
-DELIMITER //
-CREATE PROCEDURE sp_AccesoUsuario(
-    IN p_usuario VARCHAR(15),
-    IN p_password VARCHAR(15)
-)
-BEGIN
-    SELECT 
-        u.usu_cve_usuario,
-        u.usu_nombre,
-        u.usu_apellido_paterno,
-        u.usu_apellido_materno,
-        u.usu_telefono,
-        u.usu_correo,
-        u.usu_usuario,
-        r.rol_cve_rol,
-        r.rol_nombre,
-        r.rol_descripcion,
-        CASE 
-            WHEN u.usu_usuario = p_usuario AND u.usu_password = p_password THEN 1
-            ELSE 0
-        END AS acceso_valido
-    FROM usuario u
-    INNER JOIN rol r ON u.rol_cve_rol = r.rol_cve_rol
-    WHERE u.usu_usuario = p_usuario 
-    AND u.usu_password = p_password
-    LIMIT 1;
-END //
-DELIMITER ;
-
-CALL sp_AccesoUsuario('pperez', 'itp2025');
-
-CALL sp_AccesoUsuario('usuario_falso', 'password_falso');
-
--- Procedimiento para obtener detalle completo de un producto
-
-DROP PROCEDURE IF EXISTS sp_DetalleProducto;
-
-DELIMITER //
-CREATE PROCEDURE sp_DetalleProducto(
-    IN p_pro_cve INT
-)
-BEGIN
-    SELECT 
-        PRO_CVE,
-        PRO_NOMBRE,
-        PRO_DESCRIPCION,
-        PRO_PRECIO,
-        PRO_CANTIDAD,
-        PRO_ACTIVO,
-        PRO_FOTO,
-        PRO_ESTATUS,
-        DATE_FORMAT(PRO_FECHA_REGISTRO, '%d/%m/%Y %H:%i') AS fecha_registro_formato
-    FROM producto
-    WHERE PRO_CVE = p_pro_cve;
-END //
-DELIMITER ;
-
-CALL sp_DetalleProducto(1);
+-- Para ejecutar el procedimiento
+CALL spRptProducto();
 
 
--- Procedimiento para insertar un nuevo producto
-
-DROP PROCEDURE IF EXISTS sp_InsertarProducto;
-
-DELIMITER //
-CREATE PROCEDURE sp_InsertarProducto(
-    IN p_nombre VARCHAR(100),
-    IN p_descripcion VARCHAR(255),
-    IN p_precio DECIMAL(10,2),
-    IN p_cantidad INT,
-    IN p_foto VARCHAR(255)
-)
-BEGIN
-    INSERT INTO producto (
-        PRO_NOMBRE, 
-        PRO_DESCRIPCION, 
-        PRO_PRECIO, 
-        PRO_CANTIDAD, 
-        PRO_FOTO
-    )
-    VALUES (
-        p_nombre,
-        p_descripcion,
-        p_precio,
-        p_cantidad,
-        p_foto
-    );
-    
-    -- Retornar el ID del producto insertado
-    SELECT LAST_INSERT_ID() AS pro_cve_insertado;
-END //
-DELIMITER ;
-
-
--- Procedimiento para actualizar un producto
-
-DROP PROCEDURE IF EXISTS sp_ActualizarProducto;
-
-DELIMITER //
-CREATE PROCEDURE sp_ActualizarProducto(
-    IN p_pro_cve INT,
-    IN p_nombre VARCHAR(100),
-    IN p_descripcion VARCHAR(255),
-    IN p_precio DECIMAL(10,2),
-    IN p_cantidad INT,
-    IN p_foto VARCHAR(255),
-    IN p_estatus VARCHAR(20)
-)
-BEGIN
-    UPDATE producto
-    SET 
-        PRO_NOMBRE = p_nombre,
-        PRO_DESCRIPCION = p_descripcion,
-        PRO_PRECIO = p_precio,
-        PRO_CANTIDAD = p_cantidad,
-        PRO_FOTO = p_foto,
-        PRO_ESTATUS = p_estatus
-    WHERE PRO_CVE = p_pro_cve;
-    
-    SELECT ROW_COUNT() AS registros_actualizados;
-END //
-DELIMITER ;
-
-
--- Procedimiento para eliminar (lógicamente) un producto
-DROP PROCEDURE IF EXISTS sp_EliminarProducto;
-
-DELIMITER //
-CREATE PROCEDURE sp_EliminarProducto(
-    IN p_pro_cve INT
-)
-BEGIN
-    UPDATE producto
-    SET 
-        PRO_ACTIVO = 0,
-        PRO_ESTATUS = 'INACTIVO'
-    WHERE PRO_CVE = p_pro_cve;
-    
-    SELECT ROW_COUNT() AS registros_eliminados;
-END //
-DELIMITER ;
