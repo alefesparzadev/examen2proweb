@@ -105,4 +105,3 @@ VALUES
 ('Mayonesa McCormick', 'Mayonesa 190g', 25.00, 22, 1, '20.jpg', 'DISPONIBLE');
 
 
-drop table producto;
