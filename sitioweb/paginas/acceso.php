@@ -14,7 +14,7 @@ if (!empty($_REQUEST['txtUsuario']) && !empty($_REQUEST['txtContrasena'])) {
 	// ######### HACE USO DEL SERVICIO WEB QUE ESTA PUBLICADO DE MANERA LOCAL ########
 	$cliente = new SoapClient(null, array(
 		'uri' => 'http://localhost/',
-		'location' => 'http://localhost/proweb/2seguimieento/examen2proweb/servicioweb/servicioweb.php'
+		'location' => 'http://localhost/proweb/examen2proweb/servicioweb/servicioweb.php'
 		//'location'=>'http://100.26.22.228/proweb/1erseg/practica5/servicioweb/servicioweb.php'
 	));
 
