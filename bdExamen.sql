@@ -152,34 +152,6 @@ call sp_Acceso('pperez','todospasaran?');
 call sp_Acceso('pperez','itp2025');
 call sp_Acceso('ppere','todospasaran?');
 
--- Vista para reporte de articulos
--- -------------------------------
-CREATE VIEW `vwRptProductos`
-AS
-SELECT  
-    PRO_CVE as clave, 
-    PRO_NOMBRE as nombre,
-    PRO_DESCRIPCION as descripcion, 
-    PRO_PRECIO as precio,   
-    PRO_CANTIDAD as existencias, 
-    PRO_FOTO as foto,
-    PRO_ESTATUS as estatus,
-    PRO_FECHA_REGISTRO as fecha_registro
-FROM producto 
-WHERE PRO_ACTIVO = 1 
-AND PRO_ESTATUS = 'DISPONIBLE'
-AND PRO_CANTIDAD > 0 
-ORDER BY PRO_CVE; 
-
-SELECT * FROM ARTICULO;
-
-
-
-
-SELECT * FROM vwRptArticulos;
-
-update ARTICULO set art_estatus = 'ACTIVO';
-
 DELIMITER //
 
 CREATE PROCEDURE spRptProducto()
