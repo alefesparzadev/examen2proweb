@@ -1,17 +1,18 @@
 <!-- Bootstrap Icons (si ya lo cargas en tu layout, puedes quitar esta línea) -->
 <!-- link href="../bootstrap/css/bootstrap-icons.css" rel="stylesheet" -->
 
-<footer class="bg-dark text-light position-relative mt-5">
-  <!-- Olas decorativas -->
-  <div class="position-absolute w-100" style="top: -80px; left: 0; overflow: hidden; height: 80px; pointer-events: none;">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-100 h-100">
-      <path d="M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z" fill="rgba(34,211,238,.18)">
+<footer class="bg-light text-dark position-relative" style="margin-top: 0; padding-top: 0; border-top: 3px solid #FFE600;">
+  <!-- Olas decorativas estilo MercadoLibre -->
+  <div class="position-absolute w-100" style="top: 0; left: 0; overflow: hidden; height: 80px; pointer-events: none; z-index: 0;">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-100 h-100" style="transform: translateY(-100%);">
+
+      <path d="M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z" fill="rgba(255,230,0,.25)">
         <animate attributeName="d" dur="12s" repeatCount="indefinite"
           values="M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z;
                   M0,0 C250,80 950,40 1200,90 L1200,120 L0,120 Z;
                   M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z" />
       </path>
-      <path d="M0,10 C260,90 940,20 1200,95 L1200,120 L0,120 Z" fill="rgba(167,139,250,.15)">
+      <path d="M0,10 C260,90 940,20 1200,95 L1200,120 L0,120 Z" fill="rgba(52,131,250,.18)">
         <animate attributeName="d" dur="10s" repeatCount="indefinite"
           values="M0,10 C260,90 940,20 1200,95 L1200,120 L0,120 Z;
                   M0,10 C220,70 980,50 1200,85 L1200,120 L0,120 Z;
@@ -20,14 +21,23 @@
     </svg>
   </div>
 
-  <div class="container pt-5">
+  <div class="container" style="padding-top: 100px; position: relative; z-index: 1;">
     <div class="row g-4">
       <div class="col-12 col-md-6 col-lg-3">
         <h5 class="fw-bold">Sobre el sitio</h5>
         <p class="text-secondary mb-3">
           Material de la materia <strong>Programación Web (7°, 8° ISC)</strong>. Prácticas con PHP, HTML, CSS, JS, MySQL <strong>(Friendly Web Design).</strong> 21200591
-        <div class="my_name">ALEF DAVID ESPARZA DIAZ</div>
         </p>
+        <div class="developers-section mb-3">
+          <div class="my_name">
+            <i class="bi bi-code-slash me-1"></i>
+            ALEF DAVID ESPARZA DÍAZ
+          </div>
+          <div class="my_name my_name_secondary">
+            <i class="bi bi-code-slash me-1"></i>
+            ANGEL EDUARDO LUGO LÓPEZ
+          </div>
+        </div>
         <div class="d-flex gap-2">
           <a class="btn btn-outline-light btn-sm rounded-3" href="#" title="GitHub"><i class="bi bi-github"></i></a>
           <a class="btn btn-outline-light btn-sm rounded-3" href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
@@ -40,8 +50,8 @@
         <h5 class="fw-bold">Enlaces rápidos</h5>
         <ul class="list-unstyled">
           <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="inicio.php">Inicio</a></li>
-          <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="inicio.php?op=rptarticulos">Articulos</a></li>
-          <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="inicio.php?op=bienvenida">Admin Productos</a></li>
+          <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="inicio.php?op=rptproductos">Productos</a></li>
+
           <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="inicio.php?op=acceso">Mi sesión</a></li>
           <li class="mb-1"><a class="link-light link-opacity-75-hover text-decoration-none" href="#" id="pfGoTopLink">Volver arriba</a></li>
         </ul>
@@ -52,7 +62,7 @@
         <ul class="list-unstyled text-secondary mb-0">
           <li>Instituto Tecnológico de Pachuca, Hidalgo</li>
           <li>Email: contacto@pachuca.tecnm.mx</li>
-          <li>Tel: (771) 000 0000</li>
+          <li>Tel: (777) 343 2670</li>
         </ul>
       </div>
 
@@ -100,7 +110,31 @@
   .my_name {
     color: #22d3ee;
     padding: 0;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .my_name:hover {
+    color: #34d399;
+    transform: translateX(5px);
+  }
+
+  .my_name_secondary {
+    color: #a78bfa;
+  }
+
+  .my_name_secondary:hover {
+    color: #22d3ee;
+  }
+
+  .developers-section {
+    background: rgba(34, 211, 238, 0.05);
+    border-left: 3px solid #22d3ee;
+    padding: 12px;
+    border-radius: 6px;
   }
 
   .btn-gradient {
