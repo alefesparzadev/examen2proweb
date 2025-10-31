@@ -7,11 +7,11 @@ $totalProductos=0;
    //######### HACE USO DEL SERVICIO WEB QUE ESTA PUBLICADO DE MANERA LOCAL ########		 
      //######### HACE USO DEL SERVICIO WEB QUE ESTA PUBLICADO DE MANERA LOCAL ########		 
       $cliente=new SoapClient(null, array('uri'=>'http://localhost/',
-	  					//'location'=>'http://localhost/proweb/1erseg/practica5/servicioweb/servicioweb.php'));	
-              'location'=>'http://100.26.22.228/proweb/1erseg/practica5/servicioweb/servicioweb.php'));	
+	  					'location'=>'http://localhost/proweb/1erseg/examen2/servicioweb/servicioweb.php'));	
+              //'location'=>'http://100.26.22.228/proweb/1erseg/practica5/servicioweb/servicioweb.php'));	
                                      
 	  //SE EJECUTA UN MÉTODO DEL SERVICIO WEB, PASANDO SUS PARAMETROS
-	  $consulta=$cliente->vwRptArticulos();
+	  $consulta=$cliente->vwRptProductos();
 
 	  $totalProductos=5;	//PARA ESTE EJEMPLO SE DEJÓ FIJO MOSTRAR POR RENGLÓN 3 PRODUCTOS
       
@@ -56,7 +56,7 @@ $totalProductos=0;
         echo "<tr>";
 
         echo "<td style='text-align:center;'>"; 
-            echo "<a href='?op=rptarticulos'>";
+            echo "<a href='?op=rptproductos'>";
             echo "<img src='".$consulta[$rr]['foto']."' class='img_size' width='250px' height='165px' style='border-radius: 10px;' />";               
             echo "<br><strong>".$consulta[$rr]['nombre']."</strong><br>"; 
             echo "<p class='gray'>$".$consulta[$rr]['precio']."</p>";   		

@@ -43,18 +43,17 @@ class clsServicios
 
 
     // VISTA vwRptArticulos
-    public function vwRptArticulos()
-    {
+    public function vwRptProductos(){
         // Variable para recepción de estatus+datos
         $datos = array();
 
         // Se estructura el comando SQL para ejecutar 
-        $cmdSql = "select * from vwRptArticulos;";
+        $cmdSql = "select * from VwRptProductos;";
 
         $i = 0; // <------ variable para controlar los registros del arreglo
 
-        //if($conn = mysqli_connect("127.0.0.1", "root", "root", "BD_PROSOFT", 3306) ){
-        if ($conn = mysqli_connect("dbproweb.c0fwxjrgyi8c.us-east-1.rds.amazonaws.com", "admin", "ProgWeb_25.", "BD_PROSOFT", 3306)) {
+        if($conn = mysqli_connect("127.0.0.1", "root", "root", "bd_almacen", 3306) ){
+        //f($conn = mysqli_connect("dbproweb.c0fwxjrgyi8c.us-east-1.rds.amazonaws.com", "admin", "ProgWeb_25.", "BD_PROSOFT", 3306) ){
             // Ejecución del comando SQL y recibir resultados (recordset)
             $renglon = mysqli_query($conn, $cmdSql);
 
@@ -64,12 +63,10 @@ class clsServicios
                 // Vaciado de datos en el arreglo de salida                
                 $datos[$i]["clave"] = $resultado["clave"];
                 $datos[$i]["nombre"] = $resultado["nombre"];
-                $datos[$i]["descripcion"] = $resultado["descripcion"];
-                $datos[$i]["existencias"] = $resultado["existencias"];
+                $datos[$i]["descripcion"] = $resultado["descripcion"];                
                 $datos[$i]["precio"] = $resultado["precio"];
+                $datos[$i]["cantidad"] = $resultado["cantidad"];
                 $datos[$i]["foto"] = $resultado["foto"];
-                $datos[$i]["modelo"] = $resultado["modelo"];
-                $datos[$i]["familia"] = $resultado["familia"];
                 $i++;
             }
             // Cerrar conexión
