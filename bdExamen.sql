@@ -154,24 +154,27 @@ call sp_Acceso('ppere','todospasaran?');
 
 DELIMITER //
 
-CREATE PROCEDURE spRptProducto()
-BEGIN
+/* Si tu tabla producto no está en la base de datos BD_PROSOFT, 
+   cambia la siguiente línea por el nombre de tu base de datos.
+*/
+
+
+CREATE OR REPLACE ALGORITHM = UNDEFINED 
+DEFINER = root@localhost 
+SQL SECURITY DEFINER VIEW VwRptProductos AS
     SELECT 
-        clave,
-        nombre,
-        descripcion,
-        precio,
-        existencias,
-        foto,
-        estatus,
-        fecha_registro
-    FROM vwRptProductos
-    ORDER BY clave;
-END //
-
-DELIMITER ;
-
--- Para ejecutar el procedimiento
-CALL spRptProducto();
-
-
+        p.PRO_CVE AS clave_producto,
+        p.PRO_NOMBRE AS nombre,
+        p.PRO_DESCRIPCION AS descripcion,
+        p.PRO_PRECIO AS precio,
+        p.PRO_CANTIDAD AS cantidad,
+        p.PRO_FOTO AS foto,
+        p.PRO_ESTATUS AS estatus
+    FROM
+        producto p
+    WHERE
+        (p.PRO_ACTIVO = 1)
+        AND (p.PRO_CANTIDAD > 0)
+        AND (p.PRO_ESTATUS = 'DISPONIBLE')
+    ORDER BY 
+        p.PRO_NOMBRE ASC;
