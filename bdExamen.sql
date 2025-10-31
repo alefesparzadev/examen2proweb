@@ -99,7 +99,7 @@ VALUES
 ('Coca-Cola 600ml', 'Refresco de cola', 18.00, 50, 1, 'imgproductos/13.jpg', 'DISPONIBLE'),
 ('Red Cola 600ml', 'Refresco de cola', 15.00, 35, 1, 'imgproductos/14.jpg', 'DISPONIBLE'),
 ('Atún Herdez en Agua', 'Lata de 140g', 22.00, 40, 1, 'imgproductos/15.jpg', 'DISPONIBLE'),
-('Consomate', 'Cubos de caldo de pollo', 10.00, 30, 1, 'imgproductos/16.jpg', 'DISPONIBLE'),
+('Consomate', 'Cubos de caldo de pollo', 10.00, 30, 1, 'imgproductos/16.png', 'DISPONIBLE'),
 ('Nutri Leche', 'Leche saborizada', 18.00, 25, 1, 'imgproductos/17.jpg', 'DISPONIBLE'),
 ('Mostaza McCormick', 'Mostaza 100g', 12.00, 20, 1, 'imgproductos/18.jpg', 'DISPONIBLE'),
 ('Sardinas San Marcos', 'Lata de sardinas', 25.00, 18, 1, 'imgproductos/19.jpg', 'DISPONIBLE'),
