@@ -105,7 +105,6 @@ VALUES
 ('Mayonesa McCormick', 'Mayonesa 190g', 25.00, 22, 1, '20.jpg', 'DISPONIBLE');
 
 
-drop table producto;
 -- ---------------------------------------------------------------------------------------
 -- Procedimiento: Control de Acceso, validacion de usuarios y estatus de env o de resultado
 -- Datos:		  Usuario, Contrasena
