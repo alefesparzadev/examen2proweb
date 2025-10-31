@@ -13,8 +13,8 @@ class clsServicios
         // -------------------------------------------------
         // Variable para recepción de estatus+datos
         $datos = array();
-        //if($conn = mysqli_connect("127.0.0.1", "root", "root", "BD_PROSOFT", 3306) ){
-        if ($conn = mysqli_connect("dbprogweb.c0d5kxeggcx3.us-east-1.rds.amazonaws.com", "admin", "ProgWeb_25.", "BD_PROSOFT", 3306)) {
+        if ($conn = mysqli_connect("127.0.0.1", "root", "Maple0017", "BD_PROSOFT", 3306)) {
+            //if ($conn = mysqli_connect("dbprogweb.c0d5kxeggcx3.us-east-1.rds.amazonaws.com", "admin", "ProgWeb_25.", "BD_PROSOFT", 3306)) {
             // Ejecución del comando SQL y recibir resultados (recordset)
             $renglon = mysqli_query($conn, $cmdSql);
 
