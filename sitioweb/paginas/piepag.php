@@ -1,9 +1,9 @@
 <!-- Bootstrap Icons (si ya lo cargas en tu layout, puedes quitar esta línea) -->
 <!-- link href="../bootstrap/css/bootstrap-icons.css" rel="stylesheet" -->
 
-<footer class="bg-dark text-light position-relative mt-5 pt-5">
+<footer class="bg-dark text-light position-relative mt-5">
   <!-- Olas decorativas -->
-  <div class="position-absolute top-0 start-0 w-100" style="transform: translateY(-100%); overflow:hidden; height:80px;">
+  <div class="position-absolute w-100" style="top: -80px; left: 0; overflow: hidden; height: 80px; pointer-events: none;">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-100 h-100">
       <path d="M0,0 C300,100 900,0 1200,100 L1200,120 L0,120 Z" fill="rgba(34,211,238,.18)">
         <animate attributeName="d" dur="12s" repeatCount="indefinite"
@@ -20,12 +20,13 @@
     </svg>
   </div>
 
-  <div class="container">
+  <div class="container pt-5">
     <div class="row g-4">
       <div class="col-12 col-md-6 col-lg-3">
         <h5 class="fw-bold">Sobre el sitio</h5>
         <p class="text-secondary mb-3">
-          Material de la materia <strong>Programación Web (7°, 8° ISC)</strong>. Prácticas con PHP, HTML, CSS, JS, MySQL <strong>(Friendly Web Design).</strong> 21200591 <div class="my_name">ALEF DAVID ESPARZA DIAZ</div> 
+          Material de la materia <strong>Programación Web (7°, 8° ISC)</strong>. Prácticas con PHP, HTML, CSS, JS, MySQL <strong>(Friendly Web Design).</strong> 21200591
+        <div class="my_name">ALEF DAVID ESPARZA DIAZ</div>
         </p>
         <div class="d-flex gap-2">
           <a class="btn btn-outline-light btn-sm rounded-3" href="#" title="GitHub"><i class="bi bi-github"></i></a>
@@ -90,40 +91,55 @@
 
   <!-- Botón volver arriba -->
   <button id="pfTopBtn" class="btn btn-light rounded-4 shadow position-fixed" type="button"
-          style="right: 16px; bottom: 16px; transform: translateY(120%); transition:.25s ease;">
+    style="right: 16px; bottom: 16px; transform: translateY(120%); transition:.25s ease;">
     <i class="bi bi-arrow-up"></i>
   </button>
 </footer>
 
 <style>
-  .my_name{
-    color:#22d3ee;
+  .my_name {
+    color: #22d3ee;
     padding: 0;
-    margin-bottom:10px ;
+    margin-bottom: 10px;
   }
-  .btn-gradient{
+
+  .btn-gradient {
     background: linear-gradient(90deg, #22d3ee, #34d399);
-    color:#0b1020; border: none;
+    color: #0b1020;
+    border: none;
   }
-  .btn-gradient:hover{ filter: brightness(1.07); }
+
+  .btn-gradient:hover {
+    filter: brightness(1.07);
+  }
 
   /* Aparición del botón arriba */
-  #pfTopBtn.show { transform: translateY(0) !important; }
+  #pfTopBtn.show {
+    transform: translateY(0) !important;
+  }
 
   /* Suaves apariciones */
-  .card, .btn, .nav-link { transition: transform .2s ease, box-shadow .2s ease; }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 1rem 2rem rgba(0,0,0,.15) !important; }
+  .card,
+  .btn,
+  .nav-link {
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .15) !important;
+  }
 </style>
 
 <script>
   // Newsletter dummy
-  function pfNewsletterThanks(){
+  function pfNewsletterThanks() {
     const err = document.getElementById('pfEmailError');
     err.style.display = 'none';
     alert('¡Gracias por suscribirte!'); // aquí podrías hacer fetch() a tu endpoint
   }
   // Volver arriba
-  (function(){
+  (function() {
     const topBtn = document.getElementById('pfTopBtn');
     const goTopLink = document.getElementById('pfGoTopLink');
 
@@ -132,8 +148,17 @@
       else topBtn.classList.remove('show');
     };
     window.addEventListener('scroll', onScroll);
-    topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-    goTopLink?.addEventListener('click', (e)=>{ e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+    topBtn.addEventListener('click', () => window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    }));
+    goTopLink?.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
     onScroll();
   })();
 </script>
