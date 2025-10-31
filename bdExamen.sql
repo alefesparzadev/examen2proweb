@@ -1,3 +1,4 @@
+-- drop database bd_almacen;
 -- ---------------------------------------------------------------
 -- PRACTICA DE INGENIERIA INVERSA EN BD
 -- ---------------------------------------------------------------
@@ -72,7 +73,7 @@ CREATE TABLE usuario (
 );
 
 
-
+select * from producto;
 
 INSERT INTO usuario VALUES (null,'Pedro', 'Perez', 'Roig', '771-234-234', 'pperez@gmail.com', now(), 'pperez', 'itp2025',1);
 INSERT INTO usuario VALUES (null,'Luis', 'Ruiz', 'Lopez', '771-876-321', 'lruiz@gmail.com', now(), 'lruiz', 'itp2025',2);
@@ -83,27 +84,26 @@ SELECT * FROM usuario;
 INSERT INTO producto 
 (PRO_NOMBRE, PRO_DESCRIPCION, PRO_PRECIO, PRO_CANTIDAD, PRO_ACTIVO, PRO_FOTO, PRO_ESTATUS)
 VALUES
-('Jabón de Barra Rosa', 'Jabón para baño', 15.00, 30, 1, '1.jpg', 'DISPONIBLE'),
-('Cloralex', 'Cloro desinfectante 1L', 25.00, 20, 1, '2.jpg', 'DISPONIBLE'),
-('Shampoo Head & Shoulders', 'Shampoo anticaspa 2 en 1', 95.00, 18, 1, '3.jpg', 'DISPONIBLE'),
-('Desodorante Dove', 'Antitranspirante Dove roll on', 75.00, 25, 1, '4.jpg', 'DISPONIBLE'),
-('Pasta Dental Colgate', 'Pasta dental 75ml', 30.00, 40, 1, '5.jpg', 'DISPONIBLE'),
-('Cepillo Dental', 'Cepillo dental cerdas suaves', 20.00, 60, 1, '6.jpg', 'DISPONIBLE'),
-('Catsup', 'Salsa de tomate 250ml', 22.00, 15, 1, '7.jpg', 'DISPONIBLE'),
-('Salsa Botanera Valentina', 'Salsa picante 250ml', 12.00, 25, 1, '8.jpg', 'DISPONIBLE'),
-('Mermelada de Fresa', 'Mermelada 200g', 28.00, 20, 1, '9.jpg', 'DISPONIBLE'),
-('Lechera Nestlé', 'Leche condensada 350g', 35.00, 30, 1, '10.jpg', 'DISPONIBLE'),
-('Carnation Clavel', 'Leche evaporada 360g', 20.00, 15, 1, '11.jpg', 'DISPONIBLE'),
-('Tang Naranja', 'Bebida en polvo sabor naranja', 6.00, 80, 1, '12.jpg', 'DISPONIBLE'),
-('Coca-Cola 600ml', 'Refresco de cola', 18.00, 50, 1, '13.jpg', 'DISPONIBLE'),
-('Red Cola 600ml', 'Refresco de cola', 15.00, 35, 1, '14.jpg', 'DISPONIBLE'),
-('Atún Herdez en Agua', 'Lata de 140g', 22.00, 40, 1, '15.jpg', 'DISPONIBLE'),
-('Consomate', 'Cubos de caldo de pollo', 10.00, 30, 1, '16.jpg', 'DISPONIBLE'),
-('Nutri Leche', 'Leche saborizada', 18.00, 25, 1, '17.jpg', 'DISPONIBLE'),
-('Mostaza McCormick', 'Mostaza 100g', 12.00, 20, 1, '18.jpg', 'DISPONIBLE'),
-('Sardinas San Marcos', 'Lata de sardinas', 25.00, 18, 1, '19.jpg', 'DISPONIBLE'),
-('Mayonesa McCormick', 'Mayonesa 190g', 25.00, 22, 1, '20.jpg', 'DISPONIBLE');
-
+('Jabón de Barra Rosa', 'Jabón para baño', 15.00, 30, 1, 'imgproductos/1.jpg', 'DISPONIBLE'),
+('Cloralex', 'Cloro desinfectante 1L', 25.00, 20, 1, 'imgproductos/2.jpg', 'DISPONIBLE'),
+('Shampoo Head & Shoulders', 'Shampoo anticaspa 2 en 1', 95.00, 18, 1, 'imgproductos/3.jpg', 'DISPONIBLE'),
+('Desodorante Dove', 'Antitranspirante Dove roll on', 75.00, 25, 1, 'imgproductos/4.jpg', 'DISPONIBLE'),
+('Pasta Dental Colgate', 'Pasta dental 75ml', 30.00, 40, 1, 'imgproductos/5.jpg', 'DISPONIBLE'),
+('Cepillo Dental', 'Cepillo dental cerdas suaves', 20.00, 60, 1, 'imgproductos/6.jpg', 'DISPONIBLE'),
+('Catsup', 'Salsa de tomate 250ml', 22.00, 15, 1, 'imgproductos/7.jpg', 'DISPONIBLE'),
+('Salsa Botanera Valentina', 'Salsa picante 250ml', 12.00, 25, 1, 'imgproductos/8.jpg', 'DISPONIBLE'),
+('Mermelada de Fresa', 'Mermelada 200g', 28.00, 20, 1, 'imgproductos/9.jpg', 'DISPONIBLE'),
+('Lechera Nestlé', 'Leche condensada 350g', 35.00, 30, 1, 'imgproductos/10.jpg', 'DISPONIBLE'),
+('Carnation Clavel', 'Leche evaporada 360g', 20.00, 15, 1, 'imgproductos/11.jpg', 'DISPONIBLE'),
+('Tang Naranja', 'Bebida en polvo sabor naranja', 6.00, 80, 1, 'imgproductos/12.jpg', 'DISPONIBLE'),
+('Coca-Cola 600ml', 'Refresco de cola', 18.00, 50, 1, 'imgproductos/13.jpg', 'DISPONIBLE'),
+('Red Cola 600ml', 'Refresco de cola', 15.00, 35, 1, 'imgproductos/14.jpg', 'DISPONIBLE'),
+('Atún Herdez en Agua', 'Lata de 140g', 22.00, 40, 1, 'imgproductos/15.jpg', 'DISPONIBLE'),
+('Consomate', 'Cubos de caldo de pollo', 10.00, 30, 1, 'imgproductos/16.jpg', 'DISPONIBLE'),
+('Nutri Leche', 'Leche saborizada', 18.00, 25, 1, 'imgproductos/17.jpg', 'DISPONIBLE'),
+('Mostaza McCormick', 'Mostaza 100g', 12.00, 20, 1, 'imgproductos/18.jpg', 'DISPONIBLE'),
+('Sardinas San Marcos', 'Lata de sardinas', 25.00, 18, 1, 'imgproductos/19.jpg', 'DISPONIBLE'),
+('Mayonesa McCormick', 'Mayonesa 190g', 25.00, 22, 1, 'imgproductos/20.jpg', 'DISPONIBLE');
 
 -- ---------------------------------------------------------------------------------------
 -- Procedimiento: Control de Acceso, validacion de usuarios y estatus de env o de resultado
@@ -145,6 +145,7 @@ begin
 
 end $$
 
+
 -- Ejecuci n del procedimiento (pruebas de validaci n de acceso)
 call sp_Acceso('hola','12345');
 call sp_Acceso('pperez','todospasaran?');
@@ -152,11 +153,6 @@ call sp_Acceso('pperez','itp2025');
 call sp_Acceso('ppere','todospasaran?');
 
 DELIMITER //
-
-/* Si tu tabla producto no está en la base de datos BD_PROSOFT, 
-   cambia la siguiente línea por el nombre de tu base de datos.
-*/
-
 
 CREATE OR REPLACE ALGORITHM = UNDEFINED 
 DEFINER = root@localhost 
@@ -177,3 +173,4 @@ SQL SECURITY DEFINER VIEW VwRptProductos AS
         AND (p.PRO_ESTATUS = 'DISPONIBLE')
     ORDER BY 
         p.PRO_NOMBRE ASC;
+
